@@ -21,18 +21,18 @@ private:
 
 public:
     LinkedList();
-    // linkedList(int x, int y); // създава свързан списък в интервала [x;y]
+    LinkedList(int x, int y); // създава свързан списък в интервала [x;y]
     ~LinkedList();
     void clear(); //трябва да е private, но заради тестовете е публична
     void push(const T& x); //вкарва елемент в началото на свързания списък
-    int count(T x);
+    int count(T x) const;
     size_t size() const;
 
     T& operator[](size_t i);
     T operator[](size_t i) const;
     LinkedList<T>& operator=(const LinkedList<T>& other);
 
-    //void push_back(const T& x);//insterLast 
+    void push_back(const T& x); //insterLast 
     void insertAfter(const T& x, Box* iterator);
     int removeFirst();
     int removeLast();

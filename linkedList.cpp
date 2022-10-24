@@ -158,7 +158,7 @@ typename LinkedList<T> :: Box* LinkedList<T> ::  copy_rec(const LinkedList<T> ::
 template <typename T> //!
 void LinkedList<T> :: push_back(const T& x) //insert Last
 {
-    LinkedList<T> :: Box* box = new Box(const T& x, Box* next);
+    LinkedList<T> :: Box* box = new Box(x, next);
     if (this->last == nullptr)
     {
         this->first = box;

@@ -34,7 +34,15 @@ LinkedList<T> :: ~LinkedList()
 template <typename T>
 LinkedList<T> :: LinkedList(int x, int y)
 {
-    
+    first = new LinkedList<T> :: Box {x, nullptr};
+    LinkedList<T> :: Box* last_created = first;
+    for (int i = (x+1); i < y; i++)
+    {
+        LinkedList<T> :: Box* box = new LinkedList<T> :: Box {i, nullptr};
+        last_created->next = box;
+        last_created = box;
+    }
+    last = last_created;
 }
 
 template <typename T>

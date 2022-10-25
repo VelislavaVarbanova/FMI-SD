@@ -125,12 +125,13 @@ void DoubleLinkedList<T> :: push_after(const T& x, Box* iterator)
     if (iterator->next == nullptr)
     {
         push_back(x);
-    }
+    }else {
     DoubleLinkedList<T> :: Box* box = new Box(x, iterator->next, iterator);
     // box->next = iterator->next;
     // box->prev = iterator;
     iterator->next->prev = box;
     iterator->next = box;
+    }
 }
 
 template <typename T>
@@ -163,13 +164,10 @@ int DoubleLinkedList<T> :: removeLast()
         this->last = nullptr;
         return value;
     }
-    
-    DoubleLinkedList<T> :: Box* crr = this->last;
-    crr = crr->prev;
     int value = this->last->data;
-    this->last = crr;
-    delete crr->next;
-    crr->next = nullptr;
+    this->last = this->last->prev;
+    delete this->last->next;
+    this->last->next = nullptr;
     return value;
 }
 
@@ -182,13 +180,13 @@ int DoubleLinkedList<T> :: removeAfter(Box* iterator)
     }
     if (iterator->next == tail)
     {
-        removeLast();
+        return removeLast();
     }
     
     DoubleLinkedList<T> :: Box* crr = iterator->next;
     int value = crr->data;
-    iterator->next->next->prev = iterator;
-    iterator->next = iterator->next->next;
+    crr->next->prev = iterator;
+    iterator->next = crr->next;
     delete crr;
     return value;
 }

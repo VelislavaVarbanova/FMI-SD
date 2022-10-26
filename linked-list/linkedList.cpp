@@ -258,3 +258,20 @@ int LinkedList<T> :: removeAfter(Box* iterator)
     delete crr;
     return value;
 }
+
+template <typename T>
+void LinkedList<T> :: append(const LinkedList<T>& other)
+{
+    if (this->first == nullptr) // this.size() == 0 
+    {
+        return *other;
+    }
+    if (other->first == nullptr) // other.size() == 0 
+    {
+        return *this;
+    }
+    this->last->next = other->first;
+    this->last = other->last;
+    other->last = nullptr;
+    other->first = nullptr;
+}

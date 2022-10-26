@@ -37,5 +37,7 @@ public:
     int removeFirst();
     int removeLast();
     int removeAfter(Box* iterator);
+
+    void append(const LinkedList<T>& other);
 };
 

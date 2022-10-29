@@ -166,7 +166,7 @@ typename LinkedList<T> :: Box* LinkedList<T> ::  copy_rec(const LinkedList<T> ::
 template <typename T> //!
 void LinkedList<T> :: push_back(const T& x) //insert Last
 {
-    LinkedList<T> :: Box* box = new Box(x, next);
+    LinkedList<T> :: Box* box = new Box(x);
     if (this->last == nullptr)
     {
         this->first = box;
@@ -186,7 +186,7 @@ void LinkedList<T> :: insertAfter(const T& x, Box* iterator)//!
         return;
     }
 
-    LinkedList<T> :: Box* box = new Box(const T& x);
+    LinkedList<T> :: Box* box = new Box(x);
     box->next = iterator->next;
     iterator->next = box;
 
@@ -217,7 +217,7 @@ int LinkedList<T> :: removeLast()
     {
         throw std::invalid_argument("Removing element from an empty list!"); 
     }
-    if (ths->first == this->last)
+    if (this->first == this->last)
     {
         int value = this->first->data;
         delete this->first;
@@ -241,13 +241,12 @@ int LinkedList<T> :: removeLast()
 template <typename T>
 int LinkedList<T> :: removeAfter(Box* iterator)
 {
-    if (iterator == nullptr || iterator == tail)
+    if (iterator == nullptr || iterator == this->last)
     {
-        //do nothing
-        return;
+        throw std :: invalid_argument("invalid Iterator");
     }
     
-    if (iterator->next == tail)
+    if (iterator->next == last)
     {
         removeLast();
     }
@@ -264,11 +263,11 @@ void LinkedList<T> :: append(const LinkedList<T>& other)
 {
     if (this->first == nullptr) // this.size() == 0 
     {
-        return *other;
+        //return *other;
     }
     if (other->first == nullptr) // other.size() == 0 
     {
-        return *this;
+       // return *this;
     }
     this->last->next = other->first;
     this->last = other->last;

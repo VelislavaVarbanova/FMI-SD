@@ -6,6 +6,7 @@ class LinkedList
 private:
     class Box
     {
+    public:
         T data;
         Box* next;
         public:

@@ -31,6 +31,7 @@ public:
     void clear(); //трябва да е private, но заради тестовете е публична
     void push(const T& x); //вкарва елемент в началото на свързания списък
     int count(T x) const;
+    void print() const;
     size_t size() const;
 
     T& operator[](size_t i);

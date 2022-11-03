@@ -87,6 +87,18 @@ int LinkedList<T> :: count(T x) const
     return count;
 }
 
+template <typename T> 
+void LinkedList<T> :: print() const
+{
+    for ( LinkedList<T> :: Box *crr = first; 
+          crr != nullptr; 
+          crr = crr->next)
+    {
+        std::cout << crr->data << std::endl;
+    }
+    
+}
+
 template <typename T>
 size_t LinkedList<T> :: size() const
 {

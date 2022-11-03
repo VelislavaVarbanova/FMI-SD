@@ -123,7 +123,15 @@ TEST_CASE("test removeFirst")
 
 int main()
 {
-
+    LinkedList<int> l;
+    l.push_back(0);
+    l.push_back(1);
+    l.push_back(2);
+    for (int i = 0; i < l.size(); i++)
+    {
+        std::cout << i << ": " << l[i] << std::endl;
+    }
+    //l.print();
 
     doctest::Context().run();
 

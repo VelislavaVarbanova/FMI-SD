@@ -32,13 +32,25 @@ LinkedList<T> :: ~LinkedList()
 }
 
 template <typename T>
+typename LinkedList<T> :: Box* LinkedList<T> :: getLast()
+{
+    return this->last;
+}
+
+template <typename T>
+typename LinkedList<T> :: Box* LinkedList<T> :: getFirst()
+{
+    return this->first;
+}
+
+template <typename T>
 LinkedList<T> :: LinkedList(int x, int y)
 {
-    first = new LinkedList<T> :: Box {x, nullptr};
-    LinkedList<T> :: Box* last_created = first;
+    first = new LinkedList<int> :: Box {x, nullptr};
+    LinkedList<int> :: Box* last_created = first;
     for (int i = (x+1); i < y; i++)
     {
-        LinkedList<T> :: Box* box = new LinkedList<T> :: Box {i, nullptr};
+        LinkedList<int> :: Box* box = new LinkedList<int> :: Box {i};
         last_created->next = box;
         last_created = box;
     }
@@ -57,7 +69,6 @@ void LinkedList<T> :: push(const T& x)
     {
         last = first;
     }
-    
 }
 
 template <typename T>

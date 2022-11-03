@@ -24,6 +24,10 @@ public:
     LinkedList();
     LinkedList(int x, int y); // създава свързан списък в интервала [x;y]
     ~LinkedList();
+
+    Box* getLast();
+    Box* getFirst();
+
     void clear(); //трябва да е private, но заради тестовете е публична
     void push(const T& x); //вкарва елемент в началото на свързания списък
     int count(T x) const;

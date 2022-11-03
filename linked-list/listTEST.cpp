@@ -99,8 +99,7 @@ TEST_CASE("test removeFirst")
     CHECK(l.getFirst()->data == 3);
 }
 
-// test  void insertAfter(x, Box* iterator) int removeFirst();
-//   int removeLast() int removeAfter(Box* iterator);
+// test  void insertAfter(x, Box* iterator) ; int removeAfter(Box* iterator);
 
 
 // TEST_CASE("test append")

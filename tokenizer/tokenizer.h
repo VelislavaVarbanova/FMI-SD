@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cassert>
+#ifndef TOKENIZER_H
+#define TOKENIZER_H
 
 
 class tokenizer
@@ -7,10 +9,12 @@ class tokenizer
 public:
     struct Token
     {
+        public:
         enum TokenType {OPEN_PAR, 
                         CLOSE_PAR, 
                         NUMBER, 
-                        OPERATOR};
+                        OPERATOR,
+                        EOE};
         TokenType type;
         char symbol;
         int value;
@@ -20,15 +24,14 @@ public:
     //Token getNextToken();
     //bool hasMoreTokens();
 
-    static bool isWhiteSpace(char);
+    bool isWhiteSpace(char);
     bool isDigit(char c);
-    //std::ostream& operator>>(std::istream &in, Token &t);
+    friend std::ostream& operator>>(std::istream &in, Token &t);
 
-
-private:
     std :: istream& in;
-    void clearWhiteSpace(); //std::istream&in
+    void clearWhiteSpace(std::istream&in); //std::istream&in
 };
 
 
 
+#endif

@@ -65,13 +65,13 @@ void reverseList(Node*& first) {
 
     Node* current = first;
     Node* prev = nullptr;
-    Node* temp = nullptr;
+    Node* nxt = nullptr;
 
     while (current != nullptr) {
-        temp = current->next;
+        nxt = current->next;
         current->next = prev;
         prev = current;
-        current = temp;
+        current = nxt;
     }
 
     first = prev;

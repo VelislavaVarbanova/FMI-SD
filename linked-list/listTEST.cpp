@@ -1,5 +1,5 @@
 #define DOCTEST_CONFIG_IMPLEMENT
-#include "doctest.h"
+#include "..\doctest.h"
 #include "linkedList.cpp"
 
 TEST_CASE("test push")

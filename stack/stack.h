@@ -19,7 +19,7 @@ private:
 public:
     Stack();
     Stack(const Stack&);
-    Stack& operator= (const Stack&);
+    Stack& operator= (const Stack<T>& other);
     ~Stack();
 
     T top();

@@ -159,7 +159,7 @@ void LinkedList<T> :: copy(const LinkedList<T> :: Box* other_first) //!
     //we assume the list is empty
     LinkedList<T> :: Box* last_created = nullptr;
     while (other_first != nullptr) //we can directly parse with other_first because 
-    // its a copy of the pointer to the first elem 
+                                // its a copy of the pointer to the first elem 
     {
        LinkedList<T> :: Box* new_box = new LinkedList<T> :: Box {other_first->data, nullptr};
         if (last_created != nullptr)

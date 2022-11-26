@@ -13,15 +13,33 @@ Stack<T> :: Stack(const Stack &other)
 }
 
 template <typename T>
-Stack<T>& :: Stack<T> :: operator= (const Stack&)
+void Stack<T> :: clear()
 {
+    Stack<T> :: Box* save = head;
+    while (head != nullptr)
+    {
+        save = head;
+        head = head->next;
+        delete save;
+    }
+    
+}
 
+template <typename T>
+Stack<T>& :: Stack<T> :: operator= (const Stack<T>& other)
+{
+    if (this != &other)
+    {
+        clear();
+        copy(other.first);
+    }
+    return *this;
 }
 
 template <typename T>
 Stack<T> :: ~Stack()
 {
-
+    clear();
 }
 
 template <typename T>

@@ -6,8 +6,8 @@ template <typename T>
 struct Box
 {
     T data;
-    box* left;
-    box* right;
+    Box* left;
+    Box* right;
 };
 
 template <typename T>

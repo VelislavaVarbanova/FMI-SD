@@ -139,3 +139,24 @@ void BinOrdTree<T> :: addHelper(typename BinOrdTree<T> :: Box *&current,const T 
     }
     
 }
+
+template <typename T>
+bool BinOrdTree<T> :: member(Box* root,const T& x)
+{
+    return root != nullptr && 
+            (root->data == x ||
+            member(root->left,x) ||
+            member(root->right,x));
+}
+
+template <typename T>
+size_t BinOrdTree<T> :: count(Box* current)
+{
+    if (current == nullptr)
+    {
+        return 0;
+    }
+    return count(current->left) + 
+            count(current->right) + 1;   
+}
+

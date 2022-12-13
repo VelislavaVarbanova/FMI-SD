@@ -153,6 +153,28 @@ Box<T>* fromScheme(std::istream &in)
     
 }
 
+template <typename T>
+void traverse_inorder(Box<T>* current)
+{
+    if (current == nullptr)
+    {
+        traverse_inorder(current->left);
+        std::cout << current->data;
+        traverse_inorder(current->right);
+    }
+}
+
+template <typename T>
+void traverse_preorder(Box<T>* current)
+{
+    if (current != nullptr)
+    {
+        std::cout << current->data;
+        traverse_preorder(current->left);
+        traverse_preorder(current->right);
+    }
+}
+
 int main()
 {
     Box<int> *myTree = nullptr;

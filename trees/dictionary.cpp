@@ -4,12 +4,52 @@ struct Node
     T data;
     Node<T>* left;
     Node<T>* right;
+
+    Node(T data, Node<T>* left, Node<T>* right)
+    {
+        this->data = data;
+        this->left = left;
+        this->right = right;
+    }
 };
 
 template <typename K, typename V>
 class Dictionary
 {
     Node<std::pair<K,V>> *root;
+
+    Node<std::pair<K,V>>* get_node_and_parent_iterative(
+                Node<std::pair<K,V>>* root_node,
+                const K& key,
+                Node<std::pair<K,V>> **parent_node)
+    {
+        Node<std::pair<K,V>>* current = root_node;
+
+        while (current != nullptr)
+        {
+            if (current->data.first > key)
+            {
+                if (parent_node != nullptr)
+                {
+                    *parent_node = current;
+                }
+                current = current->left;
+            }
+            if (/*to do*/)
+            {
+                if (parent_node != nullptr)
+                {
+                    *parent_node = current;
+                }
+                current = current ->right
+            }
+            else if (current->data.first == key)
+            {
+                return current;
+            }
+        }
+        return nullptr;
+    }
 
     Node<K,V>* add_helper(Node* root, std::pair<K,V> data)
     {

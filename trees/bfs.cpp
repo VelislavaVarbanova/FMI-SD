@@ -1,19 +1,22 @@
 #include <vector>
 #include <iostream>
 #include <queue>
+#include <fstream>
+#include "./dopulnitelno/task6.cpp"
+#include "./dopulnitelno/toDottyFuncs.h"
 
-template<typename T>
-struct Node {
-    T data;   
-    Node<T> *left; 
-    Node<T> *right;
+// template<typename T>
+// struct Node {
+//     T data;   
+//     Node<T> *left; 
+//     Node<T> *right;
 
-    Node(T data, Node<T>* left, Node<T>* right) {
-        this->data = data;
-        this->left = left;
-        this->right = right;
-    }
-};
+//     Node(T data, Node<T>* left, Node<T>* right) {
+//         this->data = data;
+//         this->left = left;
+//         this->right = right;
+//     }
+// };
 
 // interface used to visit nodes
 template<typename T>
@@ -22,7 +25,6 @@ class NodeVisitor {
       // pure virtual function providing interface framework.
       virtual void visit(Node<T> node) = 0;
 };
- 
   
 // we want to visit all node in level order
 /*
@@ -71,6 +73,61 @@ void bfs(Node<T>* root /*, const NodeVisitor<T> &visitor*/) {
     }
 }
 
+template <typename T>
+Node<T>* minDataNode(Node<T>* node)
+{
+    Node<T>* current = node;
+    while (current && current->left != nullptr)
+    {
+        current = current->left;
+    }
+    return current;
+}
+
+template <typename T>
+Node<T>* deleteKey(Node<T>* root, const T& key)
+{
+    if (root == nullptr)
+    {
+        return root;
+    }
+    if (key < root->data)
+    {
+        root->left = deleteKey(root->left, key);
+    }
+    else if (key > root->data)
+    {
+        root->right = deleteKey(root->right, key);
+    }
+    else 
+    {
+        if (root->left == nullptr && root->right == nullptr) //is leaf
+        {
+            return nullptr;
+        }
+        else if (root->right == nullptr) // 1 child
+        {
+            Node<T>* temp = root->left;
+            delete root;
+            return temp;
+        }
+        else if (root->left == nullptr)// 1 child
+        {
+            Node<T>* temp = root->right;
+            delete root;
+            return temp;
+        }
+        else
+        {
+            Node<T>* temp = minDataNode(root->right);
+            root->data = temp->data;
+            root->right = deleteKey(root->right, temp->data);
+        }
+    }
+    return root;
+}
+
+
 template <class T>
 std::vector<T> averageOfLevels(Node<T>* root) 
 {
@@ -107,15 +164,23 @@ std::vector<T> averageOfLevels(Node<T>* root)
 
 int main()
 {
-    Node<int>* root = new Node<int>{1,
-                        nullptr, 
-                        new Node<int>{2, 
-                            nullptr, 
-                            new Node<int>{3,
-                                new Node<int>{7, nullptr, nullptr}, 
-                                new Node<int>{4,
-                                    nullptr,
-                                    new Node<int>{5, nullptr, nullptr}}}}};
+    std::ofstream dot("bfs.dot");
+    Node<int>* root = new Node<int>{10,
+                         nullptr, 
+                         new Node<int>{2, 
+                             nullptr, 
+                             new Node<int>{3,
+                                 new Node<int>{17, nullptr, nullptr}, 
+                                 new Node<int>{14,
+                                     nullptr,
+                                     new Node<int>{-5, nullptr, nullptr}}}}};
 
-    bfs(root);
+    //bfs(root);
+    //toDotty(root, dot);
+
+    convertToBST(root);
+    deleteKey(root, 2);
+    toDotty(root, dot);
+
+    return 0;
 }

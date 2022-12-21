@@ -156,7 +156,7 @@ Box<T>* fromScheme(std::istream &in)
 template <typename T>
 void traverse_inorder(Box<T>* current)
 {
-    if (current == nullptr)
+    if (current != nullptr)
     {
         traverse_inorder(current->left);
         std::cout << current->data;

@@ -20,11 +20,16 @@ class BinOrdTree
     void addRec(const T&);
     void toDotty(std::ostream&);
 
+    std::vector<T> leaves();
+    std::vector<T> level(int k);
+
     bool member(const T& x);
     size_t size();
-    bool checkOrder();
+    //bool checkOrder();
 
     BinOrdTree<T>& operator=(const BinOrdTree<T>&);
+
+    void printLevels();
 
     ~BinOrdTree();
 
@@ -37,6 +42,9 @@ class BinOrdTree
     };
 
     Box* root;
+
+    std::vecrot<T> leaves(Box*);
+    std::vector<T> level(Box*, int k);
     
     void addHelper(Box *&, const T&);
     void toDotty(Box *, std::ostream &out);
@@ -47,5 +55,5 @@ class BinOrdTree
 
     bool member(Box *,const T&);
     size_t count(Box *);
-    bool checkOrder(box *,const Maybe<T>&, const Maybe<T>&);
+    //bool checkOrder(box *,const Maybe<T>&, const Maybe<T>&);
 };

@@ -16,7 +16,7 @@ DoubleLinkedList<T> :: Box :: Box(const T& x, Box* next, Box* prev)
 template <typename T>
 void DoubleLinkedList<T> :: clear() //!
 {
-    LinkedList<T> :: Box* save = first;
+    DoubleLinkedList<T> :: Box* save = first;
     while (first != nullptr)
     {
         save = first;
@@ -156,7 +156,7 @@ int DoubleLinkedList<T> :: removeLast()
     {
         throw std::invalid_argument("Removing element from an empty list!"); 
     }
-    if (ths->first == this->last)
+    if (this->first == this->last)
     {
         int value = this->first->data;
         delete this->first;
@@ -174,11 +174,11 @@ int DoubleLinkedList<T> :: removeLast()
 template <typename T>
 int DoubleLinkedList<T> :: removeAfter(Box* iterator)
 {
-    if (iterator == nullptr || iterator == tail)
+    if (iterator == nullptr || iterator == this->last)
     {
         return;
     }
-    if (iterator->next == tail)
+    if (iterator->next == this->last)
     {
         return removeLast();
     }
